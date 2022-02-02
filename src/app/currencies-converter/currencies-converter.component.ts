@@ -6,23 +6,24 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './currencies-converter.component.html',
   styleUrls: ['./currencies-converter.component.scss']
 })
+
 export class CurrenciesConverterComponent implements OnInit {
 
-  /*these are values by default during connection to Api*/
-  key:string = "75d08d30-840b-11ec-9471-790f793e395e";
-  currencyByDefault: string = "EUR";
+  /*these are values by default concerning connection to Api*/
+  key = 'e616e9a0-8429-11ec-9faa-ed54d6e4af3f';
+  currencyByDefault = "EUR";
 
   /*these are values concerning user inputs*/
-  userInput!:number;
-  convertedCurrency!:number
+  userInput!: number;
+  convertedCurrency!: number;
 
   /*these are values concerning currency to convert and currency in which to convert*/
   currencyToConvert!: string;
   currencyInWhichToConvert!: string;
 
   /*these are values in order to keep data entered*/
-  currencies!: any;
-  goal!:any;
+  currentValues!: any;
+  finalValues!: any;
 
   constructor(public httpClient: HttpClient) { }
 
@@ -31,8 +32,9 @@ export class CurrenciesConverterComponent implements OnInit {
   }
 
   /*this function returns the url to connect to the api with the necessary parameters*/
-  registerUrl(key: string, currency: string) {
-    return `https://freecurrencyapi.net/api/v2/latest?apikey=${key}&base_currency=${currency}`;
+  registerUrl(key: string, currencyByDefault: string) {
+    return `https://freecurrencyapi.net/api/v2/latest?apikey=
+    ${key}&base_currency=${currencyByDefault}`;
   }
 
   /*this function register all the data about currencies name from api*/
@@ -40,10 +42,11 @@ export class CurrenciesConverterComponent implements OnInit {
     this.httpClient.get(this.registerUrl(key, currency))
       .subscribe(response=> {
         /*we assign to the variable currencies the value of the response*/
-        this.currencies = response;
-        this.goal = this.currencies;
+        this.currentValues = response;
+        this.finalValues = this.currentValues;
+
         /*we assign to the variable currencies all the values of the keys of the data*/
-        this.currencies = Object.keys(this.currencies.data);
+        this.currentValues = Object.keys(this.currentValues.data);
       })
   }
 
@@ -61,9 +64,27 @@ export class CurrenciesConverterComponent implements OnInit {
     this.currencyInWhichToConvert = event.target.value;
   }
 
+  /*this function displays the button only if currencies have been chosen and amount inputted*/
+  enableButton() {
+    return !(this.currencyToConvert && this.userInput && this.currencyInWhichToConvert);
+  }
+
   /*this function displays the converted result of the user input*/
   displayConvertedInput() {
-
+    if(this.currencyToConvert == this.currencyByDefault) {
+      this.convertedCurrency = (Math.round(
+        this.finalValues.data[this.currencyInWhichToConvert]
+        *this.userInput*1000) /1000);
+    }
+    else if(this.currencyToConvert == this.currencyInWhichToConvert){
+      this.convertedCurrency = this.userInput;
+    }
+    else {
+      this.convertedCurrency = (Math.round(
+        this.finalValues.data[this.currencyInWhichToConvert]
+        *this.userInput*1000) /1000);
+    }
     console.log('Hello World!')
   }
+
 }
