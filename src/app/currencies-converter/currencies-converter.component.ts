@@ -71,20 +71,9 @@ export class CurrenciesConverterComponent implements OnInit {
 
   /*this function displays the converted result of the user input*/
   displayConvertedInput() {
-    if(this.currencyToConvert == this.currencyByDefault) {
-      this.convertedCurrency = (Math.round(
-        this.finalValues.data[this.currencyInWhichToConvert]
-        *this.userInput*1000) /1000);
-    }
-    else if(this.currencyToConvert == this.currencyInWhichToConvert){
-      this.convertedCurrency = this.userInput;
-    }
-    else {
-      this.convertedCurrency = (Math.round(
-        this.finalValues.data[this.currencyInWhichToConvert]
-        *this.userInput*1000) /1000);
-    }
+    this.convertedCurrency =
+      this.finalValues.data[this.currencyInWhichToConvert]
+      *this.userInput
     console.log('Hello World!')
   }
-
 }
