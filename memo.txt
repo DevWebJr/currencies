@@ -1,0 +1,20 @@
+Instructions
+Créer une petite app pour pouvoir convertir ses euros
+en dollars, en yen, en roubles...
+
+Utiliser pour ça une API parmi cette liste :
+https://geekflare.com/fr/finance/best-currency-exchange-apis/
+Elles sont toutes payantes mais avec un accès gratuit
+jusqu'à X requêtes par mois.
+Privilégier l'API Currency qui autorise 100 requêtes par jour.
+Attention à pas cramer votre forfait trop rapidement.
+Soyez donc sûrs de votre code avant de le tester.
+
+Je veux pouvoir rentrer ma valeur avec ma devise actuelle
+(par ex valeur 100 devise euros),
+et choisir la devise de destination (par ex le dollar)
+et je dois voir affiché la valeur convertie dans la devise finale.
+
+Une seule app composent,
+une classe modèle pour les data devise qu'on reçoit de l'api,
+une constante mock-api
