@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'currencies';
+  title = '&#8373;URR€NCI€$ &#8373;&curren;NV€RT€R';
 }

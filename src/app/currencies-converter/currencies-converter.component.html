@@ -1,0 +1,25 @@
+<div class="container-lg">
+  <h1 class="text-center m-5">Choisir une devise</h1>
+  <div class="form-control bg-dark text-center">
+    <select (change)="getCurrencyToConvert($event)">
+      <option disabled selected >Currency to convert</option>
+      <option *ngFor="let currency of currencies">{{currency}}</option>
+    </select>
+  </div>
+
+  <div class="form-control bg-dark text-center">
+    <input type="text" class="text-center bg-dark text-warning" placeholder=". . .">
+  </div>
+
+  <div class="form-control bg-dark text-center">
+    <select (change)="getCurrencyInWhichToConvert($event)">
+      <option disabled selected >Currency in which to convert</option>
+      <option *ngFor="let currency of currencies">{{currency}}</option>
+    </select>
+  </div>
+
+  <div class="text-center">
+    <button class="btn btn-block btn-success border-light m-5" (click)="displayConvertedInput()">Convertir</button>
+  </div>
+</div>
+
