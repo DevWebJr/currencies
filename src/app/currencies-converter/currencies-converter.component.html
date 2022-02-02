@@ -9,7 +9,7 @@
   </div>
 
   <div class="form-control bg-dark text-center mt-4">
-    <input type="text" class="text-center bg-dark text-warning" placeholder=". . .">
+    <input [(ngModel)]="userInput" type="text" class="text-center bg-dark text-warning userInput" placeholder=". . .">
   </div>
 
   <div class="form-control bg-dark text-center mt-4">
@@ -22,5 +22,8 @@
   <div class="text-center">
     <button class="btn btn-block btn-success border-light m-5" [disabled]="enableButton()" (click)="displayConvertedInput()">Convertir</button>
   </div>
-</div>
 
+  <div class="convertedCurrency text-center border-success">
+    {{convertedCurrency}}
+  </div>
+</div>
